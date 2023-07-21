@@ -23,17 +23,17 @@ import {
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBWsPSgob38zct5LXZziGPkFbPH1bKeg18",
+    apiKey: "AIzaSyC96AxrievGLUtbLa3twRa3NgMBe6BC1gY",
 
-    authDomain: "ecommerce-8ee08.firebaseapp.com",
+    authDomain: "hamropasal-9e985.firebaseapp.com",
 
-    projectId: "ecommerce-8ee08",
+    projectId: "hamropasal-9e985",
 
-    storageBucket: "ecommerce-8ee08.appspot.com",
+    storageBucket: "hamropasal-9e985.appspot.com",
 
-    messagingSenderId: "1019541917749",
+    messagingSenderId: "796644939308",
 
-    appId: "1:1019541917749:web:df9a98e5e1735f9af8a17c"
+    appId: "1:796644939308:web:0b8970bf74c6cc1b5b6389"
 
 };
 

@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding: 20px 40px;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

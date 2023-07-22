@@ -1,5 +1,5 @@
 import React from 'react';
-import './Button.scss';
+import { ButtonContainer } from './Button.Style.jsx';
 
 const Button = ({ children, buttonType, ...otherProps }) => {
     const button_type_classes = {
@@ -7,10 +7,9 @@ const Button = ({ children, buttonType, ...otherProps }) => {
         inverted: 'inverted'
     }
     return (
-
-        <button className={`button-container ${button_type_classes[buttonType]}`} {...otherProps}>
+        <ButtonContainer variant={`${buttonType ? button_type_classes[buttonType] : ''}`}  {...otherProps}>
             {children}
-        </button>
+        </ButtonContainer>
     )
 }
 

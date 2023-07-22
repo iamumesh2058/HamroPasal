@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './SignUp.scss';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../../components/Button/Button';
 import {
@@ -8,6 +7,8 @@ import {
     signInWithGooglePopup
 } from '../../utils/FitebaseUtils';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { ButtonsContainer, H2, H4, SignUpContainer } from './SignUp.Style';
 
 const SingUp = () => {
     useEffect(() => {
@@ -66,8 +67,8 @@ const SingUp = () => {
 
 
     return (
-        <div className='sign-up-container'>
-            <h2>Sign Up</h2>
+        <SignUpContainer>
+            <H2>Sign Up</H2>
             <form onSubmit={handleSubmit}>
                 <FormInput
                     label='Display Name'
@@ -104,15 +105,15 @@ const SingUp = () => {
                     onChange={handleChange}
                 />
 
-                <div className="buttons-container">
+                <ButtonsContainer>
                     <Button type='submit'>Sign Up</Button>
                     <Button type='button' buttonType={'google'} onClick={signInWithGoogle}>Sign In With Google</Button>
-                </div>
+                </ButtonsContainer>
             </form>
             <Link to={'/sign-in'}>
-                <h4>Already have account?</h4>
+                <H4>Already have account?</H4>
             </Link>
-        </div>
+        </SignUpContainer>
     )
 }
 

@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import Button from '../Button/Button';
-import './CartDropdown.scss'
 import { CartContext } from '../../context/CartContext';
 import CartItem from '../CartItem/CartItem';
 import { useNavigate } from 'react-router-dom';
+import { CartDropdownContainer, CartItems } from './CartDropdown.Style.jsx';
 
 const CartDropdown = () => {
     const { cartItems } = useContext(CartContext);
     const naviage = useNavigate();
   return (
-    <div className='cart-dropdown-container'>
-        <div className="cart-items">
+    <CartDropdownContainer>
+        <CartItems>
             {
                 cartItems.map((cartItem) => {
                     return (
@@ -18,10 +18,10 @@ const CartDropdown = () => {
                     )
                 })
             }
-        </div>
+        </CartItems>
         
         <Button onClick={() => {naviage('/checkout')}}>Go TO CHECKOUT</Button>
-    </div>
+    </CartDropdownContainer>
   )
 }
 

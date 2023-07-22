@@ -1,10 +1,10 @@
 import React from 'react';
-import './CategoryContainer.scss';
 import DirectoryItem from '../DirectoryItem/DirectoryItem';
+import { CategoriesContainer } from './CategoryContainer.Style.jsx';
 
 const CategoryContainer = ({categories}) => {
   return (
-    <div className='categories-container'>
+    <CategoriesContainer>
       {
         categories.map((category) => {
           return (
@@ -12,7 +12,7 @@ const CategoryContainer = ({categories}) => {
           )
         })
       }
-    </div>
+    </CategoriesContainer>
   )
 }
 

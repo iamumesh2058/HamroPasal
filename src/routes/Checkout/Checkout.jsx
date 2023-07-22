@@ -35,7 +35,7 @@ const Checkout = () => {
                     )
                 })
             }
-            <div className="total">${totalCost}</div>
+            <div className="total">Total : ${totalCost}</div>
         </div>
     )
 }

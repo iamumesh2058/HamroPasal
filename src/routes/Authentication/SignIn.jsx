@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './SignIn.scss';
 
 import {
   signInAuthUserWithEmailAndPassword,
@@ -8,6 +7,7 @@ import {
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../../components/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
+import { ButtonsContainer, H2, H4, SignInContainer } from './SignIn.Style';
 
 const SignIn = () => {
   useEffect(() => {
@@ -60,8 +60,8 @@ const SignIn = () => {
 
 
   return (
-    <div className='sign-in-container'>
-      <h2>Sign In</h2>
+    <SignInContainer>
+      <H2>Sign In</H2>
       <form onSubmit={handleSubmit}>
         <FormInput
           label='Email'
@@ -81,15 +81,15 @@ const SignIn = () => {
           value={password}
         />
 
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type='submit'>Sign In</Button>
           <Button type='button' onClick={signInWithGoogle} buttonType={'google'}>Sign In With Google</Button>
-        </div>
+        </ButtonsContainer>
       </form>
       <Link to={'/sign-up'}>
-        <h4>Don't have account?</h4>
+        <H4>Don't have account?</H4>
       </Link>
-    </div>
+    </SignInContainer>
   )
 }
 

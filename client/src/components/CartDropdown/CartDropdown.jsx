@@ -1,15 +1,26 @@
 import React from 'react';
-import './CartDropdown.scss'
+import './CartDropdown.scss';
 import Button from '../Button/Button';
+import { useSelector } from "react-redux";
+import CartDropdownItem from '../CartIDropdownItem/CartDropdownItem';
+import { useNavigate } from 'react-router-dom';
 
 const CartDropdown = () => {
+    const navigate = useNavigate();
+    const { cartItems} = useSelector((state) => state.cart);
+
     return (
         <div className='cart-dropdown-container'>
             <div className="cart-items">
+                {
+                    cartItems.length > 0 && cartItems.map((cartItem, i) => {
+                        return <CartDropdownItem key={i} cartItem={cartItem} />
+                    })
+                }
             </div>
-            <Button>Go TO CHECKOUT</Button>
+            <Button onClick={() => navigate("/cart")}>Go TO CART</Button>
         </div>
     )
 }
 
-export default CartDropdown
+export default CartDropdown;

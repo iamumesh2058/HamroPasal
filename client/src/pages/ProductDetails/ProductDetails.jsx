@@ -4,27 +4,38 @@ import { getProductDetails } from '../../api/product.api';
 import { toast } from "react-toastify";
 import "./ProductDetails.scss";
 import { Button } from "../../components";
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../Store/CartSlice';
 
 const ProductDetails = () => {
 	const { id } = useParams();
 	const [product, setProduct] = useState(null);
-	const getDetails = async () => {
-		getProductDetails(id)
-			.then(data => {
-				if (data.err) {
-					toast.error(data.err);
-				}
-				else {
-					setProduct(data.product);
-				}
-			})
-	}
+	const dispatch = useDispatch();
 
 	useEffect(() => {
+		const getDetails = async () => {
+			getProductDetails(id)
+				.then(data => {
+					if (data.err) {
+						toast.error(data.err);
+					}
+					else {
+						setProduct(data.product);
+					}
+				})
+		}
 		getDetails();
 	}, [id]);
 
-	console.log(product);
+	const handleAddButton = () => {
+		const productToAdd = {
+			product: product,
+			quantity: 1
+		}
+		dispatch(addItem(productToAdd));
+		toast.success("Product added to cart successfully");
+	}
+
 	return (
 		<div className='product-detail-container'>
 			<div className="image">
@@ -38,9 +49,9 @@ const ProductDetails = () => {
 				<p>Count In Stock : {product?.countInStock}</p>
 				<p>Category : {product?.category?.categoryName}</p>
 				<p>Rating : {product?.rating}</p>
-				
-				<Button>Add to Cart</Button>
-			</div>	
+
+				<Button onClick={() => handleAddButton(product)}>Add to Cart</Button>
+			</div>
 		</div>
 	)
 }

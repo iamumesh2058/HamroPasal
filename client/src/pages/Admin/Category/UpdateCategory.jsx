@@ -10,36 +10,37 @@ const UpdateCategory = () => {
     const navigate = useNavigate();
 
     const [category, setCategory] = useState({
-        categoryName: '',
-        image: '',
+        categoryName: 'Womens',
         formdata: new FormData()
     });
 
+    const { categoryName, formdata } = category;
+
+
     useEffect(() => {
-        getCategoryDetails(id)
-            .then((data) => {
-                if (data.err) {
-                    toast.error(data.err);
-                    return navigate('/dashboard/category');
-                }
-                else {
-                    const cname = data.category.categoryName
-                    setCategory({ categoryName: cname });
-                }
-            })
-    }, []);
+        const setValues = async () => {
+            await getCategoryDetails(id)
+                .then((data) => {
+                    if (data.err) {
+                        toast.error(data.err);
+                        return navigate('/dashboard/category');
+                    }
+                    else {
+                        setCategory({ ...category, ...data.category });
+                        formdata.set('categoryName', data.category.categoryName);
+                    }
+                })
+        }
+        setValues();
+    }, [id]);
 
-    console.log(category)
-
-    const { categoryName, image, formdata } = category;
     const handleChange = (e) => {
         if (e.target.name === "image") {
-            formdata.set(e.target.name, e.target.files[0])
-            setCategory({ ...category, [e.target.name]: e.target.value })
+            formdata.set(e.target.name, e.target.files[0]);
         }
         else {
-            setCategory({ ...category, [e.target.name]: e.target.value })
-            formdata.set(e.target.name, e.target.value)
+            setCategory({ ...category, [e.target.name]: e.target.value });
+            formdata.set(e.target.name, e.target.value);
         }
     }
 
@@ -59,7 +60,7 @@ const UpdateCategory = () => {
 
     return (
         <div className='add-category-container'>
-            <h3>Update Product</h3>
+            <h3>Update Category</h3>
             <form action="post" encType='multipart/form-data'>
                 <FormInput
                     label='Category Name'
@@ -71,17 +72,15 @@ const UpdateCategory = () => {
                 />
 
                 <FormInput
-                    label='Image'
                     type="file"
                     required
                     onChange={handleChange}
                     name='image'
-                    value={image}
                 />
 
                 <div className="buttons-container">
                     <Button onClick={handleSubmit}>Update Category</Button>
-                    <Button onClick={handleSubmit}>Cancel</Button>
+                    <Button onClick={() => navigate('/dashboard/category')}>Cancel</Button>
                 </div>
             </form>
         </div>

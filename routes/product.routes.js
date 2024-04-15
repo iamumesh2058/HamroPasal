@@ -21,7 +21,7 @@ router
 router
     .route('/:id')
     .get(validateIdParam, getProductDetails)
-    .put(authorizePermissions(['admin', 'sellers']), validateIdParam, upload.single('image'), validateProduct, updateProduct)
-    .delete(authorizePermissions(['admin', 'sellers']), validateIdParam, deleteProduct);
+    .put(authenticateUser, authorizePermissions(['admin']), validateIdParam, upload.single('image'), validateProduct, updateProduct)
+    .delete(authenticateUser, authorizePermissions(['admin']), validateIdParam, deleteProduct);
 
 module.exports = router;

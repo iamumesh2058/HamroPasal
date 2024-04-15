@@ -6,3 +6,4 @@ export { default as AdminSideBar } from "./AdminSideBar/AdminSideBar";
 export { default as ProductContainer } from "./ProductContainer/ProductContainer";
 export { default as ShopSideBar } from "./ShopSideBar/ShopSideBar";
 export { default as ShopTopBar } from "./ShopTopBar/ShopTopBar";
+export { default as CartItems } from "./CartItems/CartItems";

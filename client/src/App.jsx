@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { 
-	Home, 
+import {
+	Home,
 	Layout,
 	SignIn,
 	SignUp,
@@ -18,7 +18,11 @@ import {
 	ProductDetails,
 	AddCategory,
 	UpdateCategory,
+	AddProduct,
+	UpdateProduct,
+	UserRoutes,
 } from './pages';
+import Cart from './pages/Cart/Cart';
 
 const App = () => {
 	return (
@@ -36,13 +40,19 @@ const App = () => {
 					<Route path='/' element={<AdminRoutes />}>
 						<Route path='dashboard/' element={<DashboardLayout />}>
 							<Route index element={<Users />} />
-							<Route path='products' element={<Products />} />
 							<Route path='category' element={<Category />} />
 							<Route path='add-category' element={<AddCategory />} />
 							<Route path='update-category/:id' element={<UpdateCategory />} />
+							<Route path='products' element={<Products />} />
+							<Route path='add-product' element={<AddProduct />} />
+							<Route path='update-product/:id' element={<UpdateProduct />} />
 							<Route path='orders' element={<Orders />} />
 
 						</Route>
+					</Route>
+
+					<Route path='/' element={<UserRoutes />}>
+						<Route path='cart' element={<Cart />} />
 					</Route>
 				</Route>
 				<Route />

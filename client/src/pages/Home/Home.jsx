@@ -25,7 +25,7 @@ const Home = () => {
 	return (
 		<div className="categories-container">
 			{
-				categories.length > 1 && categories?.map((category) => {
+				categories && categories?.map((category) => {
 					const { categoryName, image} = category;
 					return (
 						<div className='directory-container' key={category._id}>

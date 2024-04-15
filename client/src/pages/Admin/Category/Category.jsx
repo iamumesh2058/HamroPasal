@@ -11,6 +11,7 @@ const Category = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { categories } = useSelector((state) => state.category);
+    
     useEffect(() => {
         dispatch(getAllCategories());
     }, []);
@@ -47,7 +48,7 @@ const Category = () => {
 
                 <tbody>
                     {
-                        categories.length > 1 && categories.map((category, i) => {
+                        categories && categories.map((category, i) => {
                             return (
                                 <tr key={i} className='category-header'>
                                     <td>

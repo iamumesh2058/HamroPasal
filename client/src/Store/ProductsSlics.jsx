@@ -6,7 +6,7 @@ const initialState = {
 
 export const getAllProducts = createAsyncThunk("products/getallproducts", () => {
     return fetch("/api/product")
-    .then((res) => res.json())
+    .then((res) => res.json());
 })
 
 const productsSlice = createSlice({

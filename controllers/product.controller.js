@@ -15,12 +15,12 @@ exports.addProduct = async (req, res) => {
 	}
 
 	let product = await Product.create(req.body);
-	res.status(201).json({ product });
+	res.status(201).json({ msg: "Product added successfully" });
 };
 
 // GETL ALL PRODUCTS
 exports.getAllProducts = async (req, res) => {
-	let products = await Product.find().populate("category", "categoryName");
+	let products = await Product.find().populate("category", "categoryName").sort('-createdAt');
 	res.status(200).json({ products });
 };
 

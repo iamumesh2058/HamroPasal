@@ -12,11 +12,16 @@ export { default as AddCategory } from "./Admin/Category/AddCategory";
 export { default as UpdateCategory } from "./Admin/Category/UpdateCategory";
 
 export { default as Products } from "./Admin/Products/Products";
+export { default as AddProduct } from "./Admin/Products/AddProduct";
+export { default as UpdateProduct } from "./Admin/Products/UpdateProduct";
+
+
 export { default as Users } from "./Admin/Users/Users";
 export { default as Orders } from "./Admin/Orders/Orders";
 
 
 export { default as AdminRoutes } from "./SelectiveRoutes/AdminRoutes";
+export { default as UserRoutes } from "./SelectiveRoutes/UserRoutes";
 
 
 export { default as Shop } from "./Shop/Shop";

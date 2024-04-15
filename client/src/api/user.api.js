@@ -19,12 +19,12 @@ export const verifyEmail = (token) => {
 }
 
 export const authenticate = (userInfo) => {
-    return localStorage.setItem('jwt', JSON.stringify(userInfo))
+    return sessionStorage.setItem('jwt', JSON.stringify(userInfo))
 }
 
 export const isAuthenticated = () => {
-    if (localStorage.getItem('jwt')) {
-        return JSON.parse(localStorage.getItem('jwt'));
+    if (sessionStorage.getItem('jwt')) {
+        return JSON.parse(sessionStorage.getItem('jwt'));
     }
     else {
         return false

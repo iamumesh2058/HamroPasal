@@ -13,15 +13,6 @@ const Shop = () => {
     }, []);
     return (
         <div className='shop-container'>
-            {/* {
-                products?.map((product) => {
-                    return(
-                        <div key={product._id}>
-                            <h2>{product.title}</h2>
-                        </div>
-                    )
-                })
-            } */}
             <ShopSideBar />
             <div className="content">
                 <ShopTopBar />

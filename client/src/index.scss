@@ -1,0 +1,118 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 100%;
+}
+
+
+:root {
+	/* rest of the vars */
+	--border-radius: 0.25rem;
+	--letter-spacing: 1px;
+	--transition: 0.3s ease-in-out all;
+	--max-width: 1120px;
+	--fixed-width: 600px;
+	--fluid-width: 90vw;
+	--nav-height: 6rem;
+
+	/* box shadow*/
+	--shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	--shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	--shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	--shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+	/* dark mode */
+	--dark-bg: #000000;
+	--dark-top-bg: #4a5285;
+	--dark-card: #252a41;
+	--dark-card-hover: #343b56;
+	--dark-text1: #8b97c6;
+	--dark-text2: #ffffff;
+
+
+	--light-bg: #ffffff;
+	--light-top-bg: #dce2fb;
+	--light-card: #f0f2fa;
+	--light-card-hover: #d9def2;
+	--light-text1: #63687e;
+	--light-text2: #000000;
+
+	--background: var(--light-bg);
+	--background2: var(--light-top-bg);
+	--text-color1: var(--light-text2);
+	--text-color2: var(--light-text1);
+	--card-background: var(--light-card);
+	--card-hover: var(--light-card-hover);
+}
+
+
+// @media (prefers-color-scheme: dark) {
+// 	:root {
+// 		--background: var(--dark-bg);
+// 		--background2: var(--dark-top-bg);
+// 		--text-color1: var(--dark-text2);
+// 		--text-color2: var(--dark-text1);
+// 		--card-background: var(--dark-card);
+// 		--card-hover: var(--dark-card-hover);
+// 	}
+// }
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-inter);
+	background-color: var(--background);
+	color: var(--text-color1);
+}
+
+p {
+	margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	margin: 0;
+	font-weight: 400;
+	line-height: 1;
+	text-transform: capitalize;
+	letter-spacing: var(--letter-spacing);
+}
+
+h1 {
+	font-size: clamp(1.5rem, 3vw, 3rem);
+	/* Large heading */
+}
+
+h2 {
+	font-size: clamp(1.25rem, 2.5vw, 2.5rem);
+	/* Medium heading */
+}
+
+h3 {
+	font-size: clamp(1rem, 2vw, 2rem);
+	/* Small heading */
+}
+
+h4 {
+	font-size: clamp(0.875rem, 1.5vw, 1.5rem);
+	/* Extra small heading */
+}
+
+h5 {
+	font-size: clamp(0.625rem, 1vw, 1rem);
+	/* Tiny heading */
+}
+
+a {
+	text-decoration: none;
+	color: var(--text-color1);
+}

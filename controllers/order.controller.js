@@ -5,7 +5,7 @@ const { NotFoundError, BadRequestError } = require("../errors/custom.error");
 
 // PLACE ORDER
 exports.placeOrder = async (req, res) => {
-    // console.log(req.body);
+    console.log(req.body);
     // store order items in OrderItems model
     const orderItemsIds = await Promise.all(
         req.body.orderItems.map(async (orderItem) => {
@@ -18,7 +18,6 @@ exports.placeOrder = async (req, res) => {
         })
     );
 
-    // // calculate total
     // calculate individuals totals
     const individual_totals = await Promise.all(
         orderItemsIds.map(async (orderItem) => {
@@ -26,12 +25,12 @@ exports.placeOrder = async (req, res) => {
             return order_item.product.price * order_item.quantity
         })
     );
-
-    console.log(orderItemsIds);
-
-    let total = individual_totals.reduce((acc, cur) => acc + cur);
-
-    let order = await Order.create({
+    
+    
+    // calculate total
+    const total = individual_totals.reduce((acc, cur) => acc + cur);
+    
+    const order = await Order.create({
         orderItems: orderItemsIds,
         total: total,
         user: req.body.user,
@@ -53,8 +52,7 @@ exports.placeOrder = async (req, res) => {
 
 // to get orders list
 exports.getAllOrders = async (req, res) => {
-    // let orders = await Order.find().populate('user', 'username').populate({ path: 'orderItems', populate: ({ path: 'product', popultate: ('category') }) });
-    const orders = await Order.find();
+    let orders = await Order.find().populate('user', 'username').populate({ path: 'orderItems', populate: ({ path: 'product', popultate: ('category') }) });
     if (!orders) throw new NotFoundError("No orders");
     res.status(200).json({ orders });
 }

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
 const orderSchema = new mongoose.Schema({
-    orderIitems: [{
+    orderItems: [{
         type: ObjectId,
         ref: "OrderItems",
         required: true

@@ -42,7 +42,7 @@ const ProductDetails = () => {
 		getRecommendedProducts();
 	}, [id]);
 
-	const handleAddButton = () => {
+	const handleAddButton = (product) => {
 		const productToAdd = {
 			product: product,
 			quantity: 1

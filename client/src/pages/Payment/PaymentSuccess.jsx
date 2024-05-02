@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { isAuthenticated } from '../../api/user.api';
 import { placeOrder } from '../../api/order.api';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';  
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import "./PaymentSuccess.scss";
 
 const PaymentSuccess = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const user = isAuthenticated();
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const order = {
@@ -23,14 +27,26 @@ const PaymentSuccess = () => {
           }
           else {
             toast.success(data.msg);
+            setSuccess(true);
+            localStorage.removeItem('cartItems');
+            return navigate('/');
           }
         })
     }
-    placingOrder();
+    !success && placingOrder();
   }, []);
 
   return (
-    <div>PaymentSuccess</div>
+    <>
+      {
+        !success &&
+        <div className="wrapper">
+          <div className='spinner'>
+            Placing Order
+          </div>
+        </div>
+      }
+    </>
   )
 }
 

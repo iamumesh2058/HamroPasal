@@ -1,0 +1,33 @@
+.wrapper {
+  width: 100%;
+  height: calc(100vh - 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @keyframes spin {
+    100% {
+      border-top: 5px solid var(--text-color2);
+    }
+    25% {
+      border-right: 5px solid var(--text-color2);
+    }
+    50%{
+      border-bottom: 5px solid var(--text-color2);
+    }
+    75%{
+      border-left: 5px solid var(--text-color2);
+    }
+  }
+
+  .spinner {
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid var(--text-color1);
+    border-radius: 100%;
+    animation: spin 1s linear infinite;
+  }
+}

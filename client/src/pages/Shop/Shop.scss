@@ -1,8 +1,13 @@
-.shop-container{
-    margin: 25px 45px;
-    display: flex;
+.shop-container {
+	margin: 1rem 1rem;
+	display: flex;
+	flex-direction: column;
 
-    .content{
-        width: 100%;
-    }
+	@media screen and (min-width: 768px) {
+		flex-direction: row;
+	}
+
+	.content {
+		width: 100%;
+	}
 }

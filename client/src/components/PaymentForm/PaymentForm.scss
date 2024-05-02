@@ -1,0 +1,26 @@
+.form-checkout {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow1);
+  padding: 1rem;
+
+  @media screen and (min-width:640px) {
+    width: 465px;
+    margin: 2rem auto;
+  }
+
+  @media screen and (min-width:768px) {
+    width: 640px;
+    margin: 2rem auto;
+  }
+
+  button{
+    border: none;
+    border-radius: 10px;
+  }
+}

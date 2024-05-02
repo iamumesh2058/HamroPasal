@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 import {
 	Home,
 	Layout,
@@ -21,14 +20,25 @@ import {
 	AddProduct,
 	UpdateProduct,
 	UserRoutes,
+	Cart,
+	CheckoutPage,
+	Payment,
+	PaymentSuccess,
 } from './pages';
-import Cart from './pages/Cart/Cart';
+
+const checkDefaultTheme = () => {
+	const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+	document.body.classList.toggle('dark');
+	return isDarkTheme;
+};
+
+const isDarkThemeEnabled = checkDefaultTheme();
 
 const App = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<Layout />}>
+				<Route path='/' element={<Layout isDarkThemeEnabled />}>
 					<Route index element={<Home />} />
 					<Route path='sign-in' element={<SignIn />} />
 					<Route path='sign-up' element={<SignUp />} />
@@ -53,6 +63,9 @@ const App = () => {
 
 					<Route path='/' element={<UserRoutes />}>
 						<Route path='cart' element={<Cart />} />
+						<Route path='checkout' element={<CheckoutPage />} />
+						<Route path='payment' element={<Payment />} />
+						<Route path='payment/success' element={<PaymentSuccess />} />
 					</Route>
 				</Route>
 				<Route />

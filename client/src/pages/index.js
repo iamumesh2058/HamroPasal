@@ -26,3 +26,7 @@ export { default as UserRoutes } from "./SelectiveRoutes/UserRoutes";
 
 export { default as Shop } from "./Shop/Shop";
 export { default as ProductDetails } from "./ProductDetails/ProductDetails";
+export { default as Cart } from "./Cart/Cart";
+export { default as CheckoutPage } from "./CheckoutPage/CheckoutPage";
+export { default as Payment } from "./Payment/Payment";
+export { default as PaymentSuccess } from "./Payment/PaymentSuccess";

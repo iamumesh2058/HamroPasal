@@ -16,6 +16,7 @@ const productRoutes = require("./routes/product.routes");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const orderRoutes = require("./routes/order.routes");
+const paymentRoutes = require("./routes/payment.routes");
 
 // MIDDLEWARES
 const errorHandlerMiddlware = require("./middlewares/error.handler.middleware");
@@ -41,6 +42,7 @@ app.use("/api/product", productRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes)
 app.use("/api/order", orderRoutes);
+app.use("/api/payment", paymentRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));

@@ -4,7 +4,8 @@ const {
     getAllProducts,
     getProductDetails,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductByCategory
 } = require("../controllers/product.controller");
 
 const { validateIdParam, validateProduct } = require("../middlewares/validation.middleware");
@@ -23,5 +24,7 @@ router
     .get(validateIdParam, getProductDetails)
     .put(authenticateUser, authorizePermissions(['admin']), validateIdParam, upload.single('image'), validateProduct, updateProduct)
     .delete(authenticateUser, authorizePermissions(['admin']), validateIdParam, deleteProduct);
+
+router.route("/category/:id").get(validateIdParam, getProductByCategory);
 
 module.exports = router;

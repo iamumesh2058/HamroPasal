@@ -32,3 +32,14 @@ export const deleteProduct = (id) => {
         .then((res) => res.json())
         .catch((err) => console.log(err));
 }
+
+export const getCategoryProducts = (id) => {
+    return fetch(`/api/product/category/${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': "application/json"
+        }
+    })
+        .then((res) => res.json())
+        .catch((err) => console.log(err));
+}

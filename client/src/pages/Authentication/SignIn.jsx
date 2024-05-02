@@ -59,7 +59,7 @@ const Login = () => {
 	return (
 		<div className="auth-container">
 			<h3>Sign In</h3>
-			<form method='post'>
+			<form method='post' autoComplete='false'>
 				<FormInput
 					label='Email'
 					type="email"

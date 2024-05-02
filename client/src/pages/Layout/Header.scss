@@ -1,16 +1,18 @@
 .navigation {
     height: 4rem;
-    // width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 25px 40px;
-    padding: 1rem 3rem;
-    background-color: var(--background);
-    border-bottom: 1px solid var(--text-color1);
+    padding: 0 1rem;
+    position: relative;
+    background-color: var(--background2);
+
+    @media screen and (min-width: 640px) {
+        padding: 0 2rem;
+    }
+
 
     .logo-container {
-        height: 100%;
         width: 70px;
         display: flex;
         justify-content: center;
@@ -18,14 +20,63 @@
     }
 
     .nav-links-container {
-        width: 50%;
-        height: 100%;
         display: flex;
         align-items: center;
         justify-content: flex-end;
 
         .nav-link {
             padding: 10px 15px;
+            cursor: pointer;
+            display: none;
+
+            @media screen and (min-width: 640px) {
+                display: block;
+            }
+        }
+
+        .burger {
+            height: 35px;
+            width: 35px;
+            cursor: pointer;
+
+            @media screen and (min-width: 640px) {
+                display: none;
+            }
+        }
+
+        .nav-links-dropdown {
+            position: absolute;
+            top: 4rem;
+            right: 0;
+            z-index: 100;
+            height: calc(100vh - 4rem);
+            width: 50vw;
+            background-color: var(--background2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            color: #222;
+
+
+            .nav-link {
+                display: block;
+            }
+
+            @media screen and (min-width: 640px) {
+                display: none;
+            }
+        }
+
+        .sun {
+            height: 25px;
+            width: 25px;
+            cursor: pointer;
+        }
+
+        .moon {
+            height: 25px;
+            width: 25px;
             cursor: pointer;
         }
     }

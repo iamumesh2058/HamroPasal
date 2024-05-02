@@ -65,3 +65,10 @@ exports.deleteProduct = async (req, res) => {
 	if (!product) throw new NotFoundError(`No product with id ${value}`);
 	res.status(200).json({ msg: "Product deleted successfully" });
 };
+
+exports.getProductByCategory = async (req, res) => {
+	const product = await Product.findById(req.params.id);
+	const products = await Product.find({ category: product.category._id}).limit(5).sort("-createdAt");
+	if (!products) throw new NotFoundError(`No products found`);
+	res.status(200).json({ products})
+}

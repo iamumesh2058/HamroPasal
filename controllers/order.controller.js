@@ -5,11 +5,12 @@ const { NotFoundError, BadRequestError } = require("../errors/custom.error");
 
 // PLACE ORDER
 exports.placeOrder = async (req, res) => {
+    // console.log(req.body);
     // store order items in OrderItems model
     const orderItemsIds = await Promise.all(
         req.body.orderItems.map(async (orderItem) => {
             let orderItems = await OrderItems.create({
-                product: orderItem.product,
+                product: orderItem.product._id,
                 quantity: orderItem.quantity
             });
             if (!orderItems) throw new NotFoundError("No order items found");
@@ -25,6 +26,8 @@ exports.placeOrder = async (req, res) => {
             return order_item.product.price * order_item.quantity
         })
     );
+
+    console.log(orderItemsIds);
 
     let total = individual_totals.reduce((acc, cur) => acc + cur);
 
@@ -44,13 +47,14 @@ exports.placeOrder = async (req, res) => {
 
     if (!order) throw new BadRequestError("Failed to place order");
 
-    res.status(200).json({ order });
+    res.status(200).json({ msg: "Order placed successfully" });
 }
 
 
 // to get orders list
 exports.getAllOrders = async (req, res) => {
-    let orders = await Order.find().populate('user', 'username').populate({ path: 'orderItems', populate: ({ path: 'product', popultate: ('category') }) });
+    // let orders = await Order.find().populate('user', 'username').populate({ path: 'orderItems', populate: ({ path: 'product', popultate: ('category') }) });
+    const orders = await Order.find();
     if (!orders) throw new NotFoundError("No orders");
     res.status(200).json({ orders });
 }
@@ -58,7 +62,7 @@ exports.getAllOrders = async (req, res) => {
 
 // to get order details
 exports.getOrderDetails = async (req, res) => {
-    let order = await Order.findById(req.params.orderId).populate('user', 'username').populate({ path: 'orderItems', populate: ({ path: 'product', populate: ('category') }) });
+    const order = await Order.findById(req.params.orderId).populate('user', 'username').populate({ path: 'orderItems', populate: ({ path: 'product', populate: ('category') }) });
     if (!order) throw new NotFoundError("No orders");
     res.status(200).json({ order });
 }

@@ -1,0 +1,20 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Inter', sans-serif;
+	background-color: var(--background1);
+	color: var(--text-color1);
+	overflow-x: hidden;
+}

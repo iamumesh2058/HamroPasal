@@ -15,6 +15,7 @@ const productModel = new mongoose.Schema({
         required: true
     },
     image: String,
+    imagePublicId: String,
     category: {
         type: ObjectId,
         ref: "Category"

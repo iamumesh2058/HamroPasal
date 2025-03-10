@@ -4,6 +4,8 @@ require("dotenv").config();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const cloudinary = require("cloudinary");
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -22,12 +24,20 @@ const errorHandlerMiddleware = require("./middlewares/error.handler.middleware")
 
 
 // USING MIDDLEWARES
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
+});
+
 if (process.env.NODE_ENV === 'developement') {
     app.use(morgan("dev"));
 }
 app.use(express.json());
+// app.use(express.urlencoded({ extended: true}));
 app.use(cookieParser());
-app.use("/public/uploads", express.static("public/uploads"));
+// app.use("/public/uploads", express.static("public/uploads"));
+app.use(express.static(path.resolve(__dirname, "./client/dist")));
 
 
 // USING ROUTES

@@ -9,7 +9,8 @@ const categoryModel = new mongoose.Schema({
     image: {
         type: String,
         required: true
-    }
+    },
+    imagePublicId: String
 }, { timestamps: true });
 
 

@@ -17,6 +17,7 @@ const productRoutes = require("./routes/product.routes");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const orderRoutes = require("./routes/order.routes");
+const paymentRoutes = require("./routes/payment.routes");
 
 
 // IMPORTING MIDDLEWARES
@@ -46,6 +47,7 @@ app.use("/api/product", productRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/order", orderRoutes);
+app.use("/api/payment", paymentRoutes)
 
 
 // ERROR HANDLERS

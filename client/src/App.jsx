@@ -25,7 +25,7 @@ const App = () => {
 					<Route path='sign-up' element={<SignUp />} />
 
 					<Route path='shop' element={<Shop />} />
-					<Route path='product-details/:productId' element={<ProductDetails />} />
+					<Route path='product-details/:id' element={<ProductDetails />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

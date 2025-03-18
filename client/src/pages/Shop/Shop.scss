@@ -1,0 +1,19 @@
+.shop-container {
+    margin: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+    }
+
+    .content {
+        width: 100%;
+    }
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(276px, 2fr));
+    row-gap: 3rem;
+}

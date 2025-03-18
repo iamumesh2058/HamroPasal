@@ -7,7 +7,11 @@ import {
 
 import { 
 	Home, 
-	Layout 
+	Layout, 
+	ProductDetails, 
+	Shop, 
+	SignIn,
+	SignUp
 } from './pages'
 
 const App = () => {
@@ -16,6 +20,12 @@ const App = () => {
 			<Routes>
 				<Route path='/' element={<Layout />}>
 					<Route index element={<Home />} />
+					
+					<Route path='sign-in' element={<SignIn />} />
+					<Route path='sign-up' element={<SignUp />} />
+
+					<Route path='shop' element={<Shop />} />
+					<Route path='product-details/:productId' element={<ProductDetails />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

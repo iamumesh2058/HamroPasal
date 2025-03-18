@@ -1,0 +1,62 @@
+@use '../utils/index' as *;
+
+
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.1;
+    text-transform: capitalize;
+    letter-spacing: var(--letter-spacing);
+}
+
+h1 {
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    /* Large heading */
+}
+
+h2 {
+    font-size: clamp(1.25rem, 2.5vw, 2.5rem);
+    /* Medium heading */
+}
+
+h3 {
+    font-size: clamp(1rem, 2vw, 2rem);
+    /* Small heading */
+}
+
+h4 {
+    font-size: clamp(0.875rem, 1.5vw, 1.5rem);
+    /* Extra small heading */
+}
+
+h5 {
+    font-size: clamp(0.625rem, 1vw, 1rem);
+    /* Tiny heading */
+}
+
+a,
+a:visited,
+a:active {
+    text-decoration: none;
+}
+
+a {
+    color: var(--text-color1);
+
+    @include breakpoint(medium) {
+        font-size: rem(18);
+    }
+
+
+    @include breakpoint(large) {
+        font-size: rem(20);
+    }
+}

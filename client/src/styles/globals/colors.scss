@@ -1,0 +1,25 @@
+:root {
+    --dark-bg1: #1e202a;
+    --dark-bg2: #252a41;
+    --dark-text1: #8b97c6;
+    --dark-text2: #ffffff;
+
+    --light-bg1: #ffffff;
+    --light-bg2: #f0f2fa;
+    ;
+    --light-text1: #63687e;
+    --light-text2: #1e202a;
+
+    --background1: var(--light-bg1);
+    --background2: var(--light-bg2);
+    --text-color1: var(--light-text2);
+    --text-color2: var(--light-text1);
+}
+
+
+body.dark {
+    --background1: var(--dark-bg1);
+    --background2: var(--dark-bg2);
+    --text-color1: var(--dark-text2);
+    --text-color2: var(--dark-text1);
+}

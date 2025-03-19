@@ -13,3 +13,4 @@ export { default as ResetPassword } from "./Authentication/ResetPassword";
 // Shop
 export { default as Shop } from "./Shop/Shop";
 export { default as ProductDetails } from "./ProductDetails/ProductDetails";
+export { default as Cart } from "./Cart/Cart";

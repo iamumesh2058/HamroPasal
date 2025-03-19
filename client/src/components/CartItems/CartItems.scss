@@ -1,0 +1,46 @@
+.cart-item-container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 2fr repeat(4, 1fr);
+	align-items: center;
+	justify-content: center;
+	min-height: 80px;
+	border-bottom: 1px solid darkgrey;
+	font-size: 14px;
+
+	.image-container {
+		padding-right: 14px;
+		overflow: hidden;
+		max-height: 245px;
+		max-width: 190px;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+	.image-container,
+	.name,
+	.quantity,
+	.price,
+	.remove-button{
+		margin: 0 auto;
+	}
+
+	.quantity {
+		display: flex;
+
+		.arrow {
+			cursor: pointer;
+		}
+
+		.value {
+			margin: 0 5px;
+		}
+	}
+
+	.remove-button {
+		cursor: pointer;
+	}
+}

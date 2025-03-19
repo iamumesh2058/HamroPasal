@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 import {
+	Cart,
 	EmailVerification,
 	ForgotPassword,
 	Home,
@@ -15,13 +16,22 @@ import {
 	Shop,
 	SignIn,
 	SignUp,
-} from './pages'
+} from './pages';
+
+const checkDefaultTheme = () => {
+	const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+	document.body.classList.toggle('dark');
+	return isDarkTheme;
+};
+
+const isDarkThemeEnabled = checkDefaultTheme();
+
 
 const App = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<Layout />}>
+				<Route path='/' element={<Layout isDarkThemeEnabled={isDarkThemeEnabled} />}>
 					<Route index element={<Home />} />
 
 					<Route path='sign-in' element={<SignIn />} />
@@ -32,6 +42,7 @@ const App = () => {
 
 					<Route path='shop' element={<Shop />} />
 					<Route path='product-details/:id' element={<ProductDetails />} />
+					<Route path='cart' element={<Cart />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

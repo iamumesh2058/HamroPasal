@@ -1,0 +1,41 @@
+.auth-container {
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 6rem);
+	width: auto;
+	align-items: center;
+	margin-top: 2rem;
+	gap: 1rem;
+
+	@media screen and (min-width: 640px) {
+		width: 450px;
+		margin: 2rem auto;
+
+		form{
+			width: 100%;
+		}
+	}
+
+	
+	.container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+
+		h4 {
+			text-decoration: underline;
+			font-size: 16px;
+		}
+		
+		@media screen and (min-width: 640px) {
+			width: 100%;
+			flex-direction: row;
+			justify-content: space-between;
+
+			h4{
+				font-size: 18px;
+			}
+		}
+
+	}
+}

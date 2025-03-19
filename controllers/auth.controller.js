@@ -1,11 +1,20 @@
 const User = require("../models/user.model");
 const Token = require("../models/token.model");
 const crypto = require("crypto");
-const { NotFoundError, UnauthenticatedError, BadRequestError } = require("../errors/custom.error");
-
-const { hashPassword, comparePassword } = require("../utils/password.utils");
-const { createJWT } = require("../utils/token.utils");
 const sendEmail = require("../utils/email.sender.utils");
+const { createJWT } = require("../utils/token.utils");
+
+const { 
+    hashPassword, 
+    comparePassword 
+} = require("../utils/password.utils");
+
+const { 
+    NotFoundError, 
+    UnauthenticatedError, 
+    BadRequestError 
+} = require("../errors/custom.error");
+
 
 
 
@@ -34,7 +43,7 @@ exports.register = async (req, res) => {
         });
 
         // send email
-        const url = `http://127.0.0.1:8000/api/auth/verifyEmail/${token.token}`
+        const url = `${process.env.FRONTEND_URL}/verify-email/${token.token}`
         sendEmail({
             from: "noreply@something.come",
             to: req.body.email,
@@ -81,7 +90,7 @@ exports.forgotPassword = async (req, res) => {
     });
 
     // send email
-    const url = `http://127.0.0.1:8000/api/auth/resetPassword/${token.token}`;
+    const url = `${process.env.FRONTEND_URL}/reset-password/${token.token}`;
     sendEmail({
         from: "noreply@something.come",
         to: user.email,
@@ -134,7 +143,7 @@ exports.login = async (req, res) => {
         secure: process.env.NODE_ENV === "production"
     });
 
-    res.status(200).json({ msg: "User logged in" });
+    res.status(200).json({ msg: "User logged in", user: user });
 }
 
 

@@ -4,15 +4,15 @@ const crypto = require("crypto");
 const sendEmail = require("../utils/email.sender.utils");
 const { createJWT } = require("../utils/token.utils");
 
-const { 
-    hashPassword, 
-    comparePassword 
+const {
+    hashPassword,
+    comparePassword
 } = require("../utils/password.utils");
 
-const { 
-    NotFoundError, 
-    UnauthenticatedError, 
-    BadRequestError 
+const {
+    NotFoundError,
+    UnauthenticatedError,
+    BadRequestError
 } = require("../errors/custom.error");
 
 
@@ -51,7 +51,7 @@ exports.register = async (req, res) => {
             text: `Please click on the given link to verify your account ${url}`,
             html: `<a href='${url}'><button>Click to verify</button></a>`
         });
-        res.status(200).json({ msg: `Email verification link has been sent to ${user.email}` })
+        res.status(200).json({ msg: `Email verification link has been sent to ${user.email}` });
     }
 }
 
@@ -74,6 +74,34 @@ exports.verifyEmail = async (req, res) => {
     await user.save();
 
     res.status(200).json({ msg: "User verified successfully" });
+}
+
+
+// RESEND VERIFICATION
+exports.resendVerification = async (req, res) => {
+    // check if email exists
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) throw new NotFoundError("Email not registered");
+
+    // check if already verified
+    if (user.isVerified) throw new BadRequestError("User already verified. Proceed to login.");
+
+    // genereate token if not verified
+    const token = await Token.create({
+        user: user._id,
+        token: crypto.randomBytes(16).toString("hex")
+    });
+
+    // send email
+    const url = `${process.env.FRONTEND_URL}/verify-email/${token.token}`
+    sendEmail({
+        from: "noreply@something.come",
+        to: req.body.email,
+        subject: "Email verification",
+        text: `Please click on the given link to verify your account ${url}`,
+        html: `<a href='${url}'><button>Click to verify</button></a>`
+    });
+    res.status(200).json({ msg: `Email verification link has been sent to ${user.email}` });
 }
 
 
@@ -128,9 +156,6 @@ exports.login = async (req, res) => {
 
     const isValidUser = user && (await comparePassword(req.body.password, user.password));
     if (!isValidUser) throw new UnauthenticatedError("Invalid Credentials");
-
-    // checking if verified or not
-    if (!user.isVerified) throw new BadRequestError("Verify user first");
 
     // creating token
     const token = createJWT({ userId: user._id, role: user.role });

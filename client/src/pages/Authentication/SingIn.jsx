@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, FormInput } from '../../components'
 import "./AuthStyle.scss";
-import { login } from '../../api/user.api';
+import { authenticate, login } from '../../api/user.api';
 import { toast } from 'react-toastify';
-import { setUser } from '../../store/UserSlice';
 
 const SingIn = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,7 +17,7 @@ const SingIn = () => {
                     toast.error(data.err);
                 } else {
                     toast.success(data.msg);
-                    dispatch(setUser(data));
+                    authenticate(data.user);
                     return navigate("/");
                 }
             })
@@ -62,7 +59,7 @@ const SingIn = () => {
                     <h4>Don't have an account</h4>
                 </Link>
 
-                <Link>
+                <Link to={"/forgot-password"}>
                     <h4>Forgot Password</h4>
                 </Link>
             </div>

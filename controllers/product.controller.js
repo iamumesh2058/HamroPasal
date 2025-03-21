@@ -1,4 +1,5 @@
 const Product = require("../models/product.model");
+const Category = require("../models/category.model");
 const { NotFoundError } = require("../errors/custom.error");
 const formatImage = require("../utils/image.buffer.utils");
 const cloudinary = require("cloudinary");
@@ -44,7 +45,7 @@ exports.updateProduct = async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) throw new NotFoundError(`No product with id ${req.params.id}`);
 
-    if(req.file) {
+    if (req.file) {
         // delete previous image
         await cloudinary.v2.uploader.destroy(product.imagePublicId);
 
@@ -59,7 +60,7 @@ exports.updateProduct = async (req, res) => {
         req.params.id,
         req.body
     );
-    
+
     res.status(200).json({ msg: "Product updated successfully" });
 }
 
@@ -72,4 +73,14 @@ exports.deleteProduct = async (req, res) => {
     await cloudinary.v2.uploader.destroy(product.imagePublicId);
     await Product.findByIdAndDelete(req.params.id);
     res.status(200).json({ msg: "Product Deleted successfully" });
+}
+
+
+// GET PRODUCTS BY CATEGORY
+exports.getCategoryProducts = async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (!product) throw new NotFoundError(`No product with id ${req.params.id}`);
+    const products = await Product.find({ category: product.category._id }).limit(5).sort("-createAt");
+    if (!products) throw new NotFoundError("No products");
+    res.status(200).json({ products });
 }

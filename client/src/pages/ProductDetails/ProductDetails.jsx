@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { productDetails } from '../../api/product.api';
+import { getCategoryProducts, productDetails } from '../../api/product.api';
 import { toast } from 'react-toastify';
 import "./ProductDetails.scss";
-import { Button } from '../../components';
+import { Button, ProductCard } from '../../components';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../store/CartSlice';
 import { isAuthenticated } from '../../api/user.api';
@@ -11,12 +11,13 @@ import { isAuthenticated } from '../../api/user.api';
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const [recommendedProducts, setRecommendedProducts] = useState(null);
     const currentUser = isAuthenticated();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const getProductDetails = async () => {
-        productDetails(id)
+        await productDetails(id)
             .then((data) => {
                 if (data.err) {
                     toast.error(data.err);
@@ -29,8 +30,21 @@ const ProductDetails = () => {
             })
     }
 
+    const getRecommendedProducts = async () => {
+        await getCategoryProducts(id)
+            .then((data) => {
+                if (data.err) {
+                    toast.error(data.err);
+                }
+                else {
+                    setRecommendedProducts(data.products);
+                }
+            });
+    }
+
     useEffect(() => {
         getProductDetails();
+        getRecommendedProducts();
     }, [id]);
 
 
@@ -52,23 +66,40 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className='product-detail-container'>
-            <div className="image">
-                <img src={product?.image} alt={product?.productName} />
+        <>
+            <div className='product-detail-container'>
+                <div className="image">
+                    <img src={product?.image} alt={product?.productName} />
+                </div>
+
+                <div className="content">
+                    <h3>Product Details</h3>
+                    <p>Product Name: {product?.productName}</p>
+                    <p>Price : Rs. {product?.price}</p>
+                    <p>Description : {product?.description}</p>
+                    <p>Count In Stock : {product?.countInStock}</p>
+                    <p>Category : {product?.category?.categoryName}</p>
+
+                    <Button onClick={handleAddButton}>Add to Card</Button>
+                </div>
             </div>
 
-            <div className="content">
-                <h3>Product Details</h3>
-                <p>Product Name: {product?.productName}</p>
-                <p>Price : Rs. {product?.price}</p>
-                <p>Description : {product?.description}</p>
-                <p>Count In Stock : {product?.countInStock}</p>
-                <p>Category : {product?.category?.categoryName}</p>
-
-                <Button onClick={handleAddButton}>Add to Card</Button>
+            <div className="recomendation-container">
+                <h3>Products you may like</h3>
+                <div className="products-container">
+                    {
+                        recommendedProducts?.map((product) => {
+                            return (
+                                product._id !== id ?
+                                    <ProductCard key={product._id} product={product} />
+                                    :
+                                    null
+                            )
+                        })
+                    }
+                </div>
             </div>
-
-        </div>
+        </>
     )
 }
 
